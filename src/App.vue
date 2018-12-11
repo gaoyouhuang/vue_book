@@ -1,6 +1,13 @@
 <template>
   <div id="app" class="app">
-    <router-view></router-view>
+    <transition name="fade">
+      <keep-alive >
+        <router-view v-if="$route.meta.keepAlive"> </router-view>
+      </keep-alive>
+    </transition>
+        <transition name="fade">
+        <router-view v-if="!$route.meta.keepAlive"> </router-view>
+    </transition>
     <myTable></myTable>
   </div>
 </template>
@@ -31,4 +38,15 @@
     width: 100%;
     height: 100%;
   }
+  .fade-enter{
+    opacity: 0;
+  }
+  .fade-enter-active{
+    transition: all 1s linear;
+  }
+  .fade-leave-active{
+    transition: all 1s linear;
+    opacity: 0;
+  }
+
 </style>

@@ -27,6 +27,7 @@
       }
     },
     created(){
+      console.log("collection created");
       this.fo_colloectionlist();
     },
     components:{MyHeader},

@@ -22,6 +22,7 @@ function write(data,callback){
 
     })
 }
+const pagesize = 5;
 http.createServer((req,res)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
@@ -69,12 +70,36 @@ http.createServer((req,res)=>{
 
         //获取单个图书详情
         if(path.basename(obj_url.pathname)===("book")){
-            res.setHeader("Content-Type", "application/json;charset=utf-8");
+            res.setHeader("Content-Type","application/json;charset=utf-8");
             console.log("book detail",bookid);
             read((data)=>{
                 let item = JSON.parse(data).find(item=>item.id==parseInt(bookid));
                 res.end(!item?JSON.stringify({}):JSON.stringify(item));
             });            
+        }
+        //分页加载
+        if(path.basename(obj_url.pathname)===("pagelist")){
+            res.setHeader("Content-Type","application/json;charset=utf-8");
+            read((data)=>{
+                let returndata = {};
+                let booklist = JSON.parse(data);
+                let booknum = booklist.length;
+                returndata.maxNum = booknum;
+
+                let starnum = (obj_url.query.page-1)*pagesize;
+                let endnum = obj_url.query.page*pagesize;
+                if(starnum>=booknum)
+                    {
+                        returndata.bookList = [];
+                        res.end(JSON.stringify(returndata));
+                        return;
+                    }
+                if(starnum<booknum&&endnum>booknum){
+                    endnum = booknum;
+                }
+                returndata.bookList = booklist.slice(starnum,endnum);
+                res.end(JSON.stringify(returndata));
+            })
         }
             break;
         case "DELETE":

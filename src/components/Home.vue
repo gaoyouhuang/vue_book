@@ -31,6 +31,7 @@
     },
     components:{MyHeader,MySwiper},
     created(){
+      console.log("home created");
        this.fo_getBannerList();
        this.fp_getHotBooks();
     },

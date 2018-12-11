@@ -42,3 +42,6 @@ export let colloectionlist = ()=>{
 export let postAddBook=(item)=>{
     return axios.post("book",item);
 }
+export let pageBookList=(page)=>{
+    return axios.get(`book/pagelist?page=${page}`);
+}

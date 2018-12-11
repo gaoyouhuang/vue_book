@@ -36,6 +36,7 @@
   import {getDetail,putsavebook,changecollection} from "../api/index.js";
 
   export default {
+    name:"detail",
     watch:{
       $route:function(newdata,olddata){
         this.fo_getDetail(newdata.params.id)
