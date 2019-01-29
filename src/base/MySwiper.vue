@@ -26,8 +26,8 @@
           loop : true,
           autoplay: {
             delay: 3000,
-            stopOnLastSlide: false,//到最后一张图 是否要停止 false不停止(loop模式下无效)
-            disableOnInteraction: false,//操作swiper之后要不要停止轮播 false不停止
+            // stopOnLastSlide: false,//到最后一张图 是否要停止 false不停止(loop模式下无效)
+            // disableOnInteraction: false,//操作swiper之后要不要停止轮播 false不停止
           },
         },
       }

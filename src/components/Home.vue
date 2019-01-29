@@ -56,7 +56,7 @@
     }
   }
 </script>
-<style scoped>
+<style scoped lang="less">
   .content{
     top: 50px;
     width: 100%;
@@ -78,6 +78,7 @@
     float: left;
     width: 50%;
     margin: 0 auto;
+    img{ width: 100%;height: 150px;}
   }
 </style>
 
